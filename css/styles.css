@@ -1,0 +1,217 @@
+/* --- 1. VARIABLES GLOBALES --- */
+:root {
+    --bg-dark: #0a192f;
+    --bg-sidebar: #020c1b;
+    --bg-card: #112240;
+    --primary: #64ffda; /* Verde neón */
+    --secondary: #00d4ff; /* Azul */
+    --text-main: #ccd6f6;
+    --text-dim: #8892b0;
+    --white: #ffffff;
+    --danger: #ff4d4d;
+}
+
+/* --- 2. ESTILOS BASE --- */
+body {
+    background-color: var(--bg-dark);
+    color: var(--text-main);
+    font-family: 'Segoe UI', Roboto, sans-serif;
+    margin: 0;
+    min-height: 100vh;
+    display: block; /* Por defecto para el Dashboard */
+}
+
+/* --- 3. LOGIN (index.html) --- */
+/* Se centra automáticamente si no detecta el wrapper del dashboard */
+body:not(:has(#dashboard-wrapper)) {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+#login-container {
+    background: var(--bg-card);
+    padding: 2.5rem;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    text-align: center;
+    border: 1px solid var(--primary);
+    width: 100%;
+    max-width: 400px;
+}
+
+input {
+    display: block;
+    width: 100%;
+    margin: 15px 0;
+    padding: 12px;
+    border-radius: 5px;
+    border: 1px solid #233554;
+    background: #0a192f;
+    color: white;
+    box-sizing: border-box;
+}
+
+input:focus {
+    outline: none;
+    border-color: var(--primary);
+}
+
+/* --- 4. DASHBOARD (dashboard.html) --- */
+#dashboard-wrapper {
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    height: 100vh;
+}
+
+#sidebar {
+    background: var(--bg-sidebar);
+    padding: 40px 20px;
+    border-right: 1px solid #112240;
+    display: flex;
+    flex-direction: column;
+}
+
+.user-profile {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+/* Barra de progreso */
+.progress-bar {
+    width: 100%;
+    height: 10px;
+    background: #233554;
+    border-radius: 10px;
+    margin: 15px 0;
+    overflow: hidden;
+}
+
+#xp-fill {
+    height: 100%;
+    background: var(--primary);
+    width: 0%; /* Animado por JS */
+    transition: width 1s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    box-shadow: 0 0 10px var(--primary);
+}
+
+/* Grid de Módulos */
+#modules-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 25px;
+    padding: 40px;
+    overflow-y: auto;
+}
+
+.module-card {
+    background: var(--bg-card);
+    border-radius: 12px;
+    padding: 30px;
+    text-align: center;
+    border: 1px solid rgba(100, 255, 218, 0.1);
+    transition: 0.3s ease;
+}
+
+.module-card:hover {
+    transform: translateY(-8px);
+    border-color: var(--primary);
+}
+
+/* --- 5. LECCIÓN (leccion.html) --- */
+/* Estilo específico para la página de lección */
+body:has(.lesson-container) {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 50px 20px;
+    overflow-y: auto; /* Solo un scroll global */
+}
+
+.lesson-container {
+    width: 100%;
+    max-width: 850px;
+    background: var(--bg-card);
+    border-radius: 20px;
+    border: 1px solid rgba(100, 255, 218, 0.2);
+    padding: 40px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+    margin: auto;
+}
+
+#lesson-title {
+    color: var(--primary);
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+/* Video Responsivo */
+.video-container {
+    position: relative;
+    padding-bottom: 56.25%; /* 16:9 */
+    height: 0;
+    overflow: hidden;
+    border-radius: 12px;
+    margin: 30px 0;
+    border: 1px solid var(--primary);
+}
+
+.video-container iframe {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+}
+
+#lesson-content {
+    line-height: 1.8;
+    font-size: 1.1rem;
+    color: var(--text-main);
+    text-align: left;
+}
+
+/* --- 6. BOTONES --- */
+button {
+    background: transparent;
+    border: 1px solid var(--primary);
+    color: var(--primary);
+    padding: 12px 24px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: 0.3s;
+    text-transform: uppercase;
+}
+
+button:hover {
+    background: rgba(100, 255, 218, 0.1);
+    box-shadow: 0 0 15px rgba(100, 255, 218, 0.2);
+}
+
+button.primary {
+    background: var(--primary);
+    color: var(--bg-dark);
+}
+
+#btn-logout {
+    border-color: var(--danger);
+    color: var(--danger);
+    margin-top: auto; /* Lo empuja al final del sidebar */
+}
+
+#btn-logout:hover {
+    background: rgba(255, 77, 77, 0.1);
+}
+
+a {
+    color: var(--text-dim);
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: 0.3s;
+}
+
+a:hover {
+    color: var(--primary);
+}
